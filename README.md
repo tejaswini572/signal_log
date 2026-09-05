@@ -8,13 +8,13 @@ After the PWA's initial load/installation, SignalLog requires **zero network con
 
 ## Key Features
 
-- 🛡️ **Offline-First PWA Architecture**: Operates with zero network dependency using Service Worker precaching (`vite-plugin-pwa` and Workbox).
-- 🔗 **Tamper-Evident SHA-256 Hash Chain**: Each action is cryptographically anchored to the preceding entry using the standard browser Web Crypto API.
-- 💾 **Local IndexedDB Persistence**: High-performance client-side storage managed through `idb-keyval`.
-- 🔍 **Real-Time Chain Audit & Verification**: An in-browser verification engine audits sequential indexes, genesis linkage, and cryptographic hashes without mutating stored data.
-- 🛠️ **Debug Tamper Tool**: A built-in collapsible debug tool (`Debug: edit entry text directly`) allows manual editing of stored text to demonstrate immediate cryptographic breach detection and recovery.
-- 📄 **Zero-Network JSON & Report Export**: Downloads incident records and human-readable reports locally via `Blob` and `URL.createObjectURL` without sending data to external servers.
-- 🎨 **SOC Security Dark Theme**: Accessible interface featuring visual status tags (not color alone), click-to-copy hash buttons, and live network status indicators.
+- **Offline-First PWA Architecture**: Operates with zero network dependency using Service Worker precaching (`vite-plugin-pwa` and Workbox).
+- **Tamper-Evident SHA-256 Hash Chain**: Each action is cryptographically anchored to the preceding entry using the standard browser Web Crypto API.
+-  **Local IndexedDB Persistence**: High-performance client-side storage managed through `idb-keyval`.
+-  **Real-Time Chain Audit & Verification**: An in-browser verification engine audits sequential indexes, genesis linkage, and cryptographic hashes without mutating stored data.
+-  **Debug Tamper Tool**: A built-in collapsible debug tool (`Debug: edit entry text directly`) allows manual editing of stored text to demonstrate immediate cryptographic breach detection and recovery.
+-  **Zero-Network JSON & Report Export**: Downloads incident records and human-readable reports locally via `Blob` and `URL.createObjectURL` without sending data to external servers.
+-  **SOC Security Dark Theme**: Accessible interface featuring visual status tags (not color alone), click-to-copy hash buttons, and live network status indicators.
 
 ---
 
