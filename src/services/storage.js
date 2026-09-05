@@ -4,7 +4,7 @@
  * - Current incident name
  * - Ordered array of entries
  */
-import { get, set, del } from 'idb-keyval';
+import { get, set } from 'idb-keyval';
 
 const KEY_INCIDENT_NAME = 'signallog_incident_name';
 const KEY_ENTRIES = 'signallog_entries';
