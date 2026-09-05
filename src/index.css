@@ -421,3 +421,106 @@ select {
     padding: var(--space-md);
   }
 }
+
+/* ---------- Demo Tamper Panel (Stage 6) ---------- */
+.tamper-panel {
+  border-color: rgba(210, 153, 34, 0.45);
+  background: linear-gradient(180deg, rgba(210, 153, 34, 0.04) 0%, var(--color-surface) 100%);
+  transition: border-color var(--transition);
+}
+
+.tamper-panel[open] {
+  border-color: rgba(210, 153, 34, 0.7);
+}
+
+.tamper-panel summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-warning);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  user-select: none;
+  list-style: none;
+  padding: var(--space-xs) 0;
+  font-size: 0.95rem;
+}
+
+.tamper-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.tamper-panel summary::before {
+  content: '▶';
+  font-size: 0.75rem;
+  transition: transform var(--transition);
+  display: inline-block;
+}
+
+.tamper-panel[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.tamper-panel-body {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px dashed rgba(210, 153, 34, 0.3);
+}
+
+.badge-demo {
+  background: rgba(210, 153, 34, 0.15);
+  color: var(--color-warning);
+  border: 1px solid rgba(210, 153, 34, 0.4);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Status Pill / PWA Offline Indicator ---------- */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 100px;
+  background-color: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.status-pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-success);
+  box-shadow: 0 0 6px var(--color-success);
+}
+
+.status-pill.offline .status-pill-dot {
+  background-color: var(--color-warning);
+  box-shadow: 0 0 6px var(--color-warning);
+}
+
+/* ---------- Copy button ---------- */
+.btn-copy {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-dim);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-copy:hover {
+  color: var(--color-text);
+  border-color: var(--color-border-hover);
+  background: var(--color-surface-2);
+}
+

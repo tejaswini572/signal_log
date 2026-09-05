@@ -134,15 +134,42 @@ export default function Export() {
             {entries.length === 0 && ' The log has no entries yet — the file will contain an empty entries array.'}
           </p>
 
-          <button
-            type="button"
-            id="btn-download-json"
-            className="btn btn-primary"
-            onClick={handleDownloadJSON}
-            aria-label="Download incident as JSON file"
-          >
-            ↓ Download JSON
-          </button>
+          <div style={{ display: 'flex', gap: 'var(--space-sm)', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              id="btn-download-json"
+              className="btn btn-primary"
+              onClick={handleDownloadJSON}
+              aria-label="Download incident as JSON file"
+            >
+              ↓ Download JSON
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => {
+                try {
+                  const exportPayload = {
+                    incident: incidentName,
+                    exportedAt: new Date().toISOString(),
+                    totalEntries: entries.length,
+                    finalHash: entries.length > 0 ? entries[entries.length - 1].hash : null,
+                    entries,
+                  };
+                  const json = JSON.stringify(exportPayload, null, 2);
+                  if (navigator.clipboard?.writeText) {
+                    navigator.clipboard.writeText(json);
+                    setDownloadMsg('JSON report copied to clipboard.');
+                  }
+                } catch (err) {
+                  setDownloadError('Failed to copy JSON: ' + err.message);
+                }
+              }}
+              aria-label="Copy JSON report to clipboard"
+            >
+              📋 Copy JSON
+            </button>
+          </div>
 
           {downloadMsg && (
             <div className="alert alert-success" role="status" style={{ marginTop: 'var(--space-md)' }}>

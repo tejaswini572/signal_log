@@ -20,7 +20,7 @@ export default function StartIncident() {
       try {
         const current = await getActiveIncident();
         setActiveIncident(current);
-      } catch (err) {
+      } catch (_err) {
         setStorageError('Failed to load incident status from IndexedDB.');
       } finally {
         setIsLoading(false);

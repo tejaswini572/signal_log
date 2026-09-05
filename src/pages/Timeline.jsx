@@ -21,6 +21,15 @@ export default function Timeline() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [showLogForm, setShowLogForm] = useState(false);
+  const [copiedHash, setCopiedHash] = useState(null);
+
+  const handleCopyHash = (hash) => {
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(hash);
+      setCopiedHash(hash);
+      setTimeout(() => setCopiedHash(null), 1800);
+    }
+  };
 
   const loadData = async () => {
     try {
@@ -210,17 +219,35 @@ export default function Timeline() {
                   fontSize: '0.8rem',
                 }}
               >
-                <div style={{ display: 'flex', gap: 'var(--space-xs)', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: 'var(--space-xs)', flexWrap: 'wrap', alignItems: 'center' }}>
                   <span style={{ color: 'var(--color-text-dim)', minWidth: '75px' }}>prevHash:</span>
-                  <span className="mono" style={{ color: 'var(--color-text-muted)' }}>
+                  <span className="mono" style={{ color: 'var(--color-text-muted)', wordBreak: 'break-all' }}>
                     {entry.prevHash}
                   </span>
+                  {entry.prevHash !== 'GENESIS' && (
+                    <button
+                      type="button"
+                      className="btn-copy"
+                      onClick={() => handleCopyHash(entry.prevHash)}
+                      aria-label="Copy prevHash to clipboard"
+                    >
+                      {copiedHash === entry.prevHash ? 'Copied!' : 'Copy'}
+                    </button>
+                  )}
                 </div>
-                <div style={{ display: 'flex', gap: 'var(--space-xs)', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: 'var(--space-xs)', flexWrap: 'wrap', alignItems: 'center' }}>
                   <span style={{ color: 'var(--color-text-dim)', minWidth: '75px' }}>hash:</span>
-                  <span className="mono" style={{ color: 'var(--color-primary)' }}>
+                  <span className="mono" style={{ color: 'var(--color-primary)', wordBreak: 'break-all' }}>
                     {entry.hash}
                   </span>
+                  <button
+                    type="button"
+                    className="btn-copy"
+                    onClick={() => handleCopyHash(entry.hash)}
+                    aria-label="Copy hash to clipboard"
+                  >
+                    {copiedHash === entry.hash ? 'Copied!' : 'Copy'}
+                  </button>
                 </div>
               </div>
             </article>

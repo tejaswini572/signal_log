@@ -2,9 +2,26 @@
  * NavBar — top navigation bar for SignalLog.
  * Uses NavLink from react-router-dom for active-state styling.
  */
+import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export default function NavBar() {
+  const [isOnline, setIsOnline] = useState(
+    typeof navigator !== 'undefined' ? navigator.onLine : true
+  )
+
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true)
+    const handleOffline = () => setIsOnline(false)
+
+    window.addEventListener('online', handleOnline)
+    window.addEventListener('offline', handleOffline)
+    return () => {
+      window.removeEventListener('online', handleOnline)
+      window.removeEventListener('offline', handleOffline)
+    }
+  }, [])
+
   return (
     <header>
       <nav className="nav-bar" role="navigation" aria-label="Main navigation">
@@ -59,6 +76,12 @@ export default function NavBar() {
             </NavLink>
           </li>
         </ul>
+
+        {/* PWA / Network Status Indicator */}
+        <div className={`status-pill ${!isOnline ? 'offline' : ''}`} title={isOnline ? 'PWA precached & active' : 'Running offline from service worker cache'}>
+          <span className="status-pill-dot" aria-hidden="true"></span>
+          <span>{isOnline ? 'PWA Ready' : 'Offline Mode'}</span>
+        </div>
       </nav>
     </header>
   )
