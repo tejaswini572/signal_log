@@ -1,0 +1,423 @@
+/* ============================================================
+   SignalLog — Global Styles
+   Stage 1: Base design system, layout, navigation
+   ============================================================ */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  /* Color palette */
+  --color-bg:           #0d1117;
+  --color-surface:      #161b22;
+  --color-surface-2:    #21262d;
+  --color-border:       #30363d;
+  --color-border-hover: #484f58;
+
+  --color-text:         #e6edf3;
+  --color-text-muted:   #8b949e;
+  --color-text-dim:     #656d76;
+
+  --color-primary:      #388bfd;
+  --color-primary-dark: #1f6feb;
+  --color-primary-glow: rgba(56, 139, 253, 0.15);
+
+  /* Tag colors */
+  --color-detection:     #d29922;
+  --color-containment:   #da3633;
+  --color-eradication:   #3fb950;
+  --color-communication: #388bfd;
+
+  /* Status colors */
+  --color-success:  #3fb950;
+  --color-warning:  #d29922;
+  --color-error:    #f85149;
+
+  /* Spacing */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+
+  /* Typography */
+  --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+
+  /* Transitions */
+  --transition: 150ms ease;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- App Shell ---------- */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---------- Top Navigation Bar ---------- */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0 var(--space-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  height: 56px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.nav-brand .brand-icon {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-primary);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  list-style: none;
+  flex: 1;
+}
+
+.nav-links a {
+  display: block;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color var(--transition), background-color var(--transition);
+  white-space: nowrap;
+}
+
+.nav-links a:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface-2);
+}
+
+.nav-links a.active {
+  color: var(--color-text);
+  background-color: var(--color-surface-2);
+}
+
+/* ---------- Main Content ---------- */
+.main-content {
+  flex: 1;
+  padding: var(--space-xl);
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---------- Page Headings ---------- */
+.page-header {
+  margin-bottom: var(--space-xl);
+}
+
+.page-header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.03em;
+}
+
+.page-header p {
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+  font-size: 0.95rem;
+}
+
+/* ---------- Cards / Panels ---------- */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.card + .card {
+  margin-top: var(--space-lg);
+}
+
+/* ---------- Form Controls ---------- */
+label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  padding: var(--space-sm) var(--space-md);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b949e' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.form-group {
+  margin-bottom: var(--space-md);
+}
+
+.validation-msg {
+  margin-top: var(--space-xs);
+  font-size: 0.8rem;
+  color: var(--color-error);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color var(--transition), border-color var(--transition), 
+              box-shadow var(--transition), opacity var(--transition);
+  outline: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: var(--color-surface-2);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-border);
+  border-color: var(--color-border-hover);
+}
+
+.btn-danger {
+  background-color: transparent;
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: rgba(248, 81, 73, 0.1);
+}
+
+/* ---------- Status / Alert Boxes ---------- */
+.alert {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.alert-success {
+  background-color: rgba(63, 185, 80, 0.12);
+  border-color: rgba(63, 185, 80, 0.4);
+  color: var(--color-success);
+}
+
+.alert-error {
+  background-color: rgba(248, 81, 73, 0.12);
+  border-color: rgba(248, 81, 73, 0.4);
+  color: var(--color-error);
+}
+
+.alert-warning {
+  background-color: rgba(210, 153, 34, 0.12);
+  border-color: rgba(210, 153, 34, 0.4);
+  color: var(--color-warning);
+}
+
+/* ---------- Empty State ---------- */
+.empty-state {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-xl);
+  color: var(--color-text-muted);
+}
+
+.empty-state p {
+  font-size: 0.95rem;
+}
+
+/* ---------- Tag Badges ---------- */
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+}
+
+.tag-detection {
+  background-color: rgba(210, 153, 34, 0.15);
+  color: var(--color-detection);
+  border-color: rgba(210, 153, 34, 0.35);
+}
+
+.tag-containment {
+  background-color: rgba(218, 54, 51, 0.15);
+  color: var(--color-containment);
+  border-color: rgba(218, 54, 51, 0.35);
+}
+
+.tag-eradication {
+  background-color: rgba(63, 185, 80, 0.15);
+  color: var(--color-eradication);
+  border-color: rgba(63, 185, 80, 0.35);
+}
+
+.tag-communication {
+  background-color: rgba(56, 139, 253, 0.15);
+  color: var(--color-communication);
+  border-color: rgba(56, 139, 253, 0.35);
+}
+
+/* ---------- Monospace text ---------- */
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  word-break: break-all;
+}
+
+/* ---------- Divider ---------- */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-lg) 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .nav-bar {
+    padding: 0 var(--space-md);
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    height: auto;
+    padding-top: var(--space-sm);
+    padding-bottom: var(--space-sm);
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .nav-links a {
+    padding: 4px 10px;
+    font-size: 0.82rem;
+  }
+
+  .main-content {
+    padding: var(--space-md);
+  }
+}
